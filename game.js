@@ -426,6 +426,8 @@ function updateKnowledgeAndItems(dtMs) {
     Math.round(knowledgeState.percent) >= KNOWLEDGE_MAX
   ) {
     assessmentState.pending = true;
+    knowledgeState.percent = 50;
+    updateHud();
     spawnAssessmentItem();
   }
 
@@ -471,7 +473,6 @@ function updateFallingItems(dtSeconds) {
         }
       } else if (item.type === ITEM_TYPES.ASSESSMENT) {
         mistakesState.count = 0;
-        knowledgeState.percent = 50;
         assessmentState.pending = false;
         scoreState.assessmentsPassed += 1;
         updateHud();
@@ -877,9 +878,9 @@ function drawPatient() {
       1
     );
     ctx.strokeStyle = "#2ecc71";
-    ctx.strokeRect(p.x - 2, p.y - 8, p.width + 4, 5);
+    ctx.strokeRect(p.x - 2, p.y - 17, p.width + 4, 5);
     ctx.fillStyle = "#2ecc71";
-    ctx.fillRect(p.x - 2, p.y - 8, (p.width + 4) * fraction, 5);
+    ctx.fillRect(p.x - 2, p.y - 17, (p.width + 4) * fraction, 5);
   }
 
   ctx.restore();
