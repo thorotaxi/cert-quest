@@ -658,7 +658,7 @@ function drawBackground() {
       ctx.fillStyle = "#20264a";
       ctx.fillRect(b.x + b.width / 2 - 12, baseY - b.height - 18, 24, 18);
 
-      ctx.fillStyle = "#f04b4b";
+      ctx.fillStyle = "#4b7cf0";
       const cx = b.x + b.width / 2;
       const cy = baseY - b.height - 9;
       ctx.fillRect(cx - 6, cy - 2, 12, 4);
