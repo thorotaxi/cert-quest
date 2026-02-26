@@ -1,0 +1,17 @@
+{
+  "name": "cert-quest",
+  "version": "1.0.0",
+  "description": "Cert Quest - a retro browser game about maintaining medical knowledge and avoiding clinical mistakes.",
+  "private": true,
+  "scripts": {
+    "start": "serve . -l $PORT",
+    "test": "node tests.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "devDependencies": {}
+}

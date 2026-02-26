@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cert Quest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-wrapper">
+      <div class="hud">
+        <div class="hud-left">
+          <div class="thermometer">
+            <div class="thermometer-label">Medical Knowledge</div>
+            <div class="thermometer-body">
+              <div id="knowledge-fill" class="thermometer-fill"></div>
+            </div>
+            <div class="thermometer-percent">
+              <span id="knowledge-percent">50%</span>
+            </div>
+          </div>
+
+          <div class="thermometer mistakes">
+            <div class="thermometer-label">Clinical Mistakes</div>
+            <div class="thermometer-body">
+              <div id="mistake-fill" class="thermometer-fill"></div>
+            </div>
+            <div class="thermometer-percent">
+              <span id="mistake-count">0 / 5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-right">
+          <div class="counter">
+            <span class="counter-label">Patients Treated:</span>
+            <span id="patients-treated">0</span>
+          </div>
+          <div class="counter">
+            <span class="counter-label">Assessments Passed:</span>
+            <span id="assessments-passed">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="game-canvas" width="800" height="450"></canvas>
+
+        <div id="start-screen" class="overlay visible">
+          <div class="panel">
+            <h2>Cert Quest</h2>
+            <p class="tagline">Keep your skills sharp. Save your patients.</p>
+            <div class="instructions">
+              <p><strong>Move</strong>: Left / Right Arrow Keys &nbsp; <strong>Jump</strong>: Space</p>
+              <p class="goal-label"><strong>Goal</strong>:</p>
+              <ul>
+                <li>
+                  <span class="instruction-icon" title="MK book">
+                    <svg viewBox="0 0 22 26" width="22" height="26" aria-hidden="true">
+                      <rect width="22" height="26" fill="#0f9d58" stroke="#0c7040"/>
+                      <rect x="2" y="2" width="18" height="22" fill="#0c7040"/>
+                      <text x="11" y="16" text-anchor="middle" fill="#e5ffe5" font-size="10" font-family="Courier New, monospace">MK</text>
+                    </svg>
+                  </span>
+                  Catch green <strong>MK</strong> books to grow Medical Knowledge before it decays.
+                </li>
+                <li>
+                  <span class="instruction-icon" title="Mistake book">
+                    <svg viewBox="0 0 22 26" width="22" height="26" aria-hidden="true">
+                      <rect width="22" height="26" fill="#c62828" stroke="#8b1b1b"/>
+                      <rect x="2" y="2" width="18" height="22" fill="#8b1b1b"/>
+                      <text x="11" y="16" text-anchor="middle" fill="#ffe5e5" font-size="9" font-family="Courier New, monospace">ERR</text>
+                    </svg>
+                  </span>
+                  Dodge red books (in the air and on the ground) that add Clinical Mistakes. If
+                  Clinical Mistakes reach 5, the game ends.
+                </li>
+                <li>
+                  <span class="instruction-icon" title="Patient">
+                    <svg viewBox="0 0 28 24" width="28" height="24" aria-hidden="true">
+                      <!-- stretcher -->
+                      <rect x="1" y="18" width="26" height="4" fill="#2a2a3a"/>
+                      <rect x="4" y="20" width="4" height="4" fill="#4a4a6a"/>
+                      <rect x="20" y="20" width="4" height="4" fill="#4a4a6a"/>
+                      <!-- body -->
+                      <rect x="6" y="9" width="16" height="8" fill="#fff8f0"/>
+                      <!-- head -->
+                      <circle cx="14" cy="6" r="3" fill="#e8d5c4"/>
+                      <!-- head bandage -->
+                      <rect x="10" y="4" width="8" height="3" fill="#f0e0d0" stroke="#b8956e" stroke-width="0.5"/>
+                      <!-- red cross on torso -->
+                      <rect x="13" y="11" width="2" height="6" fill="#c62828"/>
+                      <rect x="11" y="13" width="6" height="2" fill="#c62828"/>
+                    </svg>
+                  </span>
+                  Treat patients by standing over them for 2 seconds.
+                </li>
+                <li>
+                  <span class="instruction-icon" title="Assessment">
+                    <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                      <path fill="#ffc107" stroke="#996600" stroke-width="1.2" d="M16 2 L19 12 L29 12 L21 19 L24 30 L16 24 L8 30 L11 19 L3 12 L13 12 Z"/>
+                      <path fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10 16 L14 20 L22 12"/>
+                    </svg>
+                  </span>
+                  When Medical Knowledge hits 100%, catch the golden Assessment to
+                  clear all Clinical Mistakes.
+                </li>
+              </ul>
+            </div>
+            <button id="start-button" class="primary-button">Begin</button>
+          </div>
+        </div>
+
+        <div id="game-over-screen" class="overlay">
+          <div class="panel">
+            <h2>Game Over</h2>
+            <p id="final-score-line"></p>
+            <p id="final-breakdown-line"></p>
+            <button id="restart-button" class="primary-button">Restart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+  </html>
+
